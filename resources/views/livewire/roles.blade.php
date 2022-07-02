@@ -74,7 +74,7 @@
                             <option value="100">100</option>
                         </select>
                         <span>entradas</span>
-        
+
                     </div>
                 @endif
             </div>
@@ -84,4 +84,40 @@
             </div>
         @endif
     </div>
+
+    {{-- MODAL FORM --}}
+    <x-jet-dialog-modal wire:model="open">
+        <x-slot name="title">
+            CREAR ROL
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="mb-4">
+                <x-jet-label value="Nombre del Rol" />
+                <x-jet-input type="text" class="w-full" wire:model.defer="nombre" />
+                {{-- Mensaje de error --}}
+                <x-jet-input-error for="nombre" />
+            </div>
+
+            <div class="mb-4">
+                @foreach ($permissions as $key => $permiso)
+                    <div class="flex items-center justify-start gap-x-4">
+                        <x-jet-checkbox value="{{ $permiso['id'] }}" wire:model="list_permisos" />
+                        <x-jet-label value="{{ $permiso['name'] }}" />    
+                    </div>
+                @endforeach
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="flex gap-x-4">
+                <x-jet-secondary-button wire:click="$set('open', false)">
+                    Cancelar
+                </x-jet-secondary-button>
+                <x-jet-button wire:click="save" wire:loading.attr="disabled" class="disabled:opacity-15">
+                    Crear
+                </x-jet-button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>

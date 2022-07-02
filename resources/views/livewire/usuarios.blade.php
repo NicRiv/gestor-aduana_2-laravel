@@ -89,4 +89,61 @@
         @endif
     </div>
 
+    {{-- MODAL FORM --}}
+    <x-jet-dialog-modal wire:model="open">
+        <x-slot name="title">
+            CREAR USUARIO
+        </x-slot>
+
+        <x-slot name="content">
+            {{-- NOMBRE --}}
+            <div class="mb-4">
+                <x-jet-label value="Nombre" />
+                <x-jet-input type="text" class="w-full" wire:model.defer="nombre" />
+                {{-- Mensaje de error --}}
+                <x-jet-input-error for="nombre" />
+            </div>
+
+            {{-- ROLES --}}
+            <div class="mb-4">
+                <x-jet-label value="Rol" />
+                <select class="w-full" wire:model="rol">
+                    <option value="" selected></option>
+                    @foreach ($roles as $rol)
+                        <option value="{{ $rol['name'] }}">{{ $rol['name'] }}</option>
+                    @endforeach
+                </select>
+                {{-- Mensaje de error --}}
+                <x-jet-input-error for="rol" />
+            </div>
+
+            {{-- EMAIL --}}
+            <div class="mb-4">
+                <x-jet-label value="Email" />
+                <x-jet-input type="text" class="w-full" wire:model.defer="email" />
+                {{-- Mensaje de error --}}
+                <x-jet-input-error for="email" />
+            </div>
+
+            {{-- CONTRASEÑA --}}
+            <div class="mb-4">
+                <x-jet-label value="Contraseña" />
+                <x-jet-input type="password" class="w-full" wire:model.defer="contraseña" />
+                {{-- Mensaje de error --}}
+                <x-jet-input-error for="contraseña" />
+            </div>
+
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="flex gap-x-4">
+                <x-jet-secondary-button wire:click="$set('open', false)">
+                    Cancelar
+                </x-jet-secondary-button>
+                <x-jet-button wire:click="save" wire:loading.attr="disabled" class="disabled:opacity-15">
+                    Crear
+                </x-jet-button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
