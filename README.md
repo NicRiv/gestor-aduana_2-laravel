@@ -3,5 +3,5 @@
 _versión: 1.1_
 
 Admin puede crear usuarios y roles personalizados
-    views/livewire/roles , ../usuarios
-    Htto/livewire/roles , ../usuarios
+* Componentes: views/livewire/roles , ../usuarios
+* Blade: Http/livewire/roles , ../usuarios
