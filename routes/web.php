@@ -16,6 +16,7 @@ use App\Http\Livewire\UnidadesLogisticas;
 use App\Http\Livewire\Usuarios;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +40,7 @@ Route::middleware([
     // Principal
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/ingresos', GestionAduana::class)->name('ingresos');
-    
+
     // Config
     Route::get('/materiales-productos', MaterialesProductos::class)->name('materiales-productos');
     Route::get('/depositos', Depositos::class)->name('depositos');
@@ -49,10 +50,23 @@ Route::middleware([
     Route::get('/unidades-logisticas', UnidadesLogisticas::class)->name('unidades-logisticas');
     Route::get('/divisiones', Divisiones::class)->name('divisiones');
     Route::get('/tipos-ingresos-egresos', TiposIngresosEgresos::class)->name('tipos-ingresos-egresos');
-    
+
     // Administracion
-    Route::get('/usuarios', Usuarios::class)->name('usuarios');
-    Route::get('/roles', Roles::class)->name('roles');
-    Route::get('/control-impresiones', ControlImpresiones::class)->name('control-impresiones');
-    Route::get('/audit-trail', AuditTrail::class)->name('audit-trail');
+    // Route::get('/usuarios', Usuarios::class)->name('usuarios');
+    // Route::get('/roles', Roles::class)->name('roles');
+    // Route::get('/control-impresiones', ControlImpresiones::class)->name('control-impresiones');
+    // Route::get('/audit-trail', AuditTrail::class)->name('audit-trail');
+});
+
+// Rutas para rol Admin
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    // Administracion
+    Route::get('/usuarios', Usuarios::class)->name('usuarios')->middleware(['role:Admin']);
+    Route::get('/roles', Roles::class)->name('roles')->middleware(['role:Admin']);
+    Route::get('/control-impresiones', ControlImpresiones::class)->name('control-impresiones')->middleware(['role:Admin']);
+    Route::get('/audit-trail', AuditTrail::class)->name('audit-trail')->middleware(['role:Admin']);
 });
