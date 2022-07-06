@@ -10,13 +10,13 @@ Admin puede crear usuarios y roles personalizados
 
 * Todos los formularios funcionan.
 * Los botones grises que dicen "Lista" no funcionan.
-* Falta agregar funcion (Modal) para ver registro especifico dentro de las tablas.
-* Roles: Admin, Cliente (Éste último no puede ingresar a las rutas de administración, ni crear registros).
+* Falta agregar función (Modal) para ver registro específico dentro de las tablas.
+* Roles: Admin, Cliente. (Éste último no puede ingresar a las rutas de administración, ni crear registros).
 * Hay tablas vinculadas para los formularios.
 * Falta agregar "Control de impresiones" y "Audit Trail"
-* Tengo que agregar clases css para tailwind y así reducir codigo, y estandarizar
+* Tengo que ver de agregar clases CSS para Tailwind y así reducir código, y estandarizar
 * El menú tal vez pase a topbar (o navigation-menu)
-* Tengo que ver si puedo crear componentes de Blade para reducir codigo, y separarlo
+* Tengo que ver si puedo crear componentes de Blade para reducir código, y separarlo
 
 ---
 
@@ -26,7 +26,7 @@ Aún sin cargar
 
 ![Dashboard](public/screenshots/dashboard.png)
 
-### Gestion Aduanas
+### Gestión Aduanas
 
 Falta la parte (ingresos, egresos, anulados), los botones para editar, y el hacer click en un registro especifico
 (ésto último falta en todas las tablas).
@@ -106,8 +106,8 @@ Form:
 
 ### Usuarios
 
-Admin: admin@mail.com, contraseña: password
-Cliente: nico@mail.com, contraseña: password
+Admin: admin@mail.com, contraseña: password.
+Cliente: nico@mail.com, contraseña: password.
 
 ![usuarios](public/screenshots/usuarios.png)
 
