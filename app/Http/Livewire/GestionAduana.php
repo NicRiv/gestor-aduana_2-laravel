@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Divisiones;
+use App\Models\IngresoEgresoTipo;
 use App\Models\Ingresos;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -65,13 +67,23 @@ class GestionAduana extends Component
     public function render()
     {
         if($this->search_div){
+            //  Tipo
+            $tipos = IngresoEgresoTipo::all();
+            // Division
+            $divisiones = Divisiones::all();
+
             // Se seleccionó Divisiones: EPD || ADD
             $ingresos = Ingresos::where('division', $this->search_div)
                 ->orderBy($this->var_orden, $this->direccion)
                 ->paginate($this->cantidad_paginas);
 
-            return view('livewire.gestion-aduana', compact('ingresos'));
+            return view('livewire.gestion-aduana', compact('ingresos', 'tipos', 'divisiones'));
         }   else {
+            //  Tipo
+            $tipos = IngresoEgresoTipo::all();
+            // Division
+            $divisiones = Divisiones::all();
+
             // Todos los registros
             $ingresos = Ingresos::where('tipo', 'like', '%' . $this->search . '%')
                 ->orWhere('numero_ingreso', 'like', '%' . $this->search . '%')
@@ -80,7 +92,7 @@ class GestionAduana extends Component
                 ->orderBy($this->var_orden, $this->direccion)
                 ->paginate($this->cantidad_paginas);
 
-                return view('livewire.gestion-aduana', compact('ingresos'));
+                return view('livewire.gestion-aduana', compact('ingresos', 'tipos', 'divisiones'));
         }
     }
 }

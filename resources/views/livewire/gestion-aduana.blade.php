@@ -5,8 +5,9 @@
             <h4 class="font-medium leading-tight text-2xl mt-0 mb-2">Ingresos ></h4>
             <select wire:model="search_div">
                 <option value="">Division</option>
-                <option value="EPD">EPD</option>
-                <option value="ADD">ADD</option>
+                @foreach ($divisiones as $division)
+                    <option value="{{ $division['nombre'] }}">{{ $division['nombre'] }}</option>
+                @endforeach
             </select>
         </div>
         <div class="flex items-center gap-x-4">
@@ -41,8 +42,7 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3 cursor-pointer" 
-                                wire:click="order('numero_ingreso')">
+                            <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('numero_ingreso')">
                                 N° de ingreso
                             </th>
                             <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('tipo')">
@@ -51,16 +51,16 @@
                             <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('division')">
                                 Division
                             </th>
-                            <th scope="col" class="px-6 py-3 cursor-pointer" >
+                            <th scope="col" class="px-6 py-3 cursor-pointer">
                                 Cantidad
                             </th>
-                            <th scope="col" class="px-6 py-3 cursor-pointer" >
+                            <th scope="col" class="px-6 py-3 cursor-pointer">
                                 Stock
                             </th>
-                            <th scope="col" class="px-6 py-3 cursor-pointer" >
+                            <th scope="col" class="px-6 py-3 cursor-pointer">
                                 Egresado
                             </th>
-                            <th scope="col" class="px-6 py-3 cursor-pointer" >
+                            <th scope="col" class="px-6 py-3 cursor-pointer">
                                 Sin ubicar
                             </th>
                             <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('created_at')">
@@ -161,10 +161,11 @@
 
             <div class="mb-4">
                 <x-jet-label value="Tipo" />
-                <select class="mx-2" wire:model="tipo">
+                <select class="w-full" wire:model="tipo">
                     <option value="" selected></option>
-                    <option value="importacion">Importación</option>
-                    <option value="exportacion">Exportación</option>
+                    @foreach ($tipos as $tipo)
+                        <option value="{{ $tipo['nombre'] }}">{{ $tipo['nombre'] }}</option>
+                    @endforeach
                 </select>
                 {{-- Mensaje de error --}}
                 <x-jet-input-error for="tipo" />
@@ -172,10 +173,11 @@
 
             <div class="mb-4">
                 <x-jet-label value="Division" />
-                <select class="mx-2" wire:model="division">
+                <select class="w-full" wire:model="division">
                     <option value="" selected></option>
-                    <option value="EPD">EPD</option>
-                    <option value="ADD">ADD</option>
+                    @foreach ($divisiones as $division)
+                        <option value="{{ $division['nombre'] }}">{{ $division['nombre'] }}</option>
+                    @endforeach
                 </select>
                 {{-- Mensaje de error --}}
                 <x-jet-input-error for="division" />

@@ -117,7 +117,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Tipo" />
-                <select class="mx-2" wire:model="tipo">
+                <select class="w-full" wire:model="tipo">
                     <option value="" selected></option>
                     <option value="Todos">Todos</option>
                     <option value="Unidad de Almacenaje">Unidad de Almacenaje</option>

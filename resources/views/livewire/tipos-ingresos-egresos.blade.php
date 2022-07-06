@@ -117,7 +117,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Método" />
-                <select class="mx-2" wire:model="metodo">
+                <select class="w-full" wire:model="metodo">
                     <option value="" selected></option>
                     <option value="Ambos">Ambos</option>
                     <option value="Ingreso">Ingreso</option>
